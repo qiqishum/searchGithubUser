@@ -1,3 +1,4 @@
+//Insert into dom using ui
 class UI {
     constructor() {
         this.profile = document.getElementById('profile')
@@ -53,21 +54,37 @@ class UI {
         </div>
             `;
         });
+
+        //output repos
         document.getElementById('repos').innerHTML = output;
     }
 
     showAlert(message, className) {
         // console.log(message)
+        //each time clear any remaining alert first
         this.clearAlert();
+
+        //create div
         const div = document.createElement('div');
         div.className = className;
+
+        //add text
         div.appendChild(document.createTextNode(message));
+
+        //insert , first get parent
         const container = document.querySelector('.searchContainer')
+        //get search box
         const search = document.querySelector('.search')
+        //insert alert
         container.insertBefore(div, search);
-        setTimeout(() => {this.clearAlert()}, 3000);
+
+        //timeout after 3 sec
+        setTimeout(() => {
+            this.clearAlert()
+        }, 3000);
     }
 
+    //clear alert message
     clearAlert() {
         const currentAlert = document.querySelector('.alert')
         if (currentAlert) {
